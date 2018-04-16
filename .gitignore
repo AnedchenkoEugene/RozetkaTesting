@@ -1,0 +1,10 @@
+.vs/AutomationEmptyTemplateProject/v15/
+AutomationEmptyTemplateProject/bin/Debug/
+AutomationEmptyTemplateProject/obj/Debug/
+AutomationEmptyTestProject/bin/
+AutomationEmptyTestProject/obj/Debug/
+packages/
+AutomatedUIFramework/bin/
+AutomatedUITests/bin/
+AutomatedUIFramework/obj/
+AutomatedUITests/obj/
