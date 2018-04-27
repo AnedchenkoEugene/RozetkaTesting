@@ -88,6 +88,7 @@ namespace AutomatedUITestsTemplate.Tests
             Assert.Multiple(() =>
             {
                 Assert.That(loginBtn.Displayed, Is.True);
+                Assert.That(loginBtn.Displayed, Is.True); Assert.That(loginBtn.Displayed, Is.True);
             });
         }
     }
