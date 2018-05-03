@@ -46,11 +46,11 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             base.GoTo();
             return this;
         }
-        public AccountsPage SearchForAccount()
+        public AccountsPage SearchForAccount(string AccountNumber)
         {
             Thread.Sleep(500);
             GetAccountsField.Clear();
-            GetAccountsField.SendKeys(ConfigurationManager.AppSettings["accountNumber"]);
+            GetAccountsField.SendKeys(AccountNumber);
             Thread.Sleep(500);
             SearchBtn.Click();
             return new AccountsPage(WebDriver);

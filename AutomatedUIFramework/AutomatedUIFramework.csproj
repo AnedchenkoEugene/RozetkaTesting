@@ -78,6 +78,7 @@
     <Compile Include="Pages\UAT1\AdminPart\LoginPage.cs" />
     <Compile Include="Pages\UAT1\AdminPart\StateTab.cs" />
     <Compile Include="Pages\UAT1\AdminPart\TaxAccountsPage.cs" />
+    <Compile Include="Pages\UAT1\StateTaxRatesTab.cs" />
     <Compile Include="Pages\UAT1\WebPage.cs" />
     <Compile Include="Pages\Interfaces\IWebPage.cs" />
     <Compile Include="Pages\Section1\SearchResultsPage.cs" />

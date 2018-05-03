@@ -15,7 +15,7 @@ namespace AutomatedUITests.Tests
         {
             var saveSuccessful = pages.LoginPage.GoTo().LoginToApp()
                                                   .GoToAccountsPage()
-                                                  .SearchForAccount()
+                                                  .SearchForAccount("")
                                                   .OpenTaxAccountsTab()
                                                   .SelectStateTab()
                                                   .SelectBisTaxCode()

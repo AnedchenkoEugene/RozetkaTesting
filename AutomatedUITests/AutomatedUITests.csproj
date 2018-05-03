@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SetUp\BasicTest.cs" />
+    <Compile Include="Tests\ComplianceNoticesFFChangesTests.cs" />
     <Compile Include="Tests\LoginTests.cs" />
     <Compile Include="Tests\LogoutTests.cs" />
     <Compile Include="Tests\TaxIdAccountNumbersTests.cs">
