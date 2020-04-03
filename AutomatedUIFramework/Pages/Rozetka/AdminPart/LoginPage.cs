@@ -7,9 +7,10 @@ namespace AutomatedUIFramework.Pages.General.UAT1
   public class LoginPage :WebPage
     {
         #region Locators
-        private By USER_NAME_FIELD = By.Id("ctl00_ctl00_cphMain_cphMainContent_txtLoginUsername");
-        private By USER_FIELD = By.Id("ctl00_ctl00_cphMain_cphMainContent_txtLoginPassword");
-        private By LOGIN_BTN = By.Id("ctl00_ctl00_cphMain_cphMainContent_btnLogin");
+        private By ENTER_BUTTON = By.XPath("//a[@class='header-topline__user-link link-dashed']");
+        private By USER_NAME_FIELD = By.Id("email");
+        private By USER_PASSWORD_FIELD = By.Id("password");
+        private By LOGIN_BTN = By.XPath("//*[@id='app']/form/div[4]/button");
         private By ERROR_MESSAGE = By.Id("ctl00_ctl00_cphMain_cphMainContent_lblPageMessage");
 
         #endregion
@@ -17,7 +18,11 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         public static string LoginError = "Invalid username/password combination.";
         #endregion
         #region WebElements
-      
+
+        private IWebElement EnterButton
+        {
+            get { return WebDriver.FindElement(ENTER_BUTTON); }
+        }
         private IWebElement UserNameField
         {
             get { return WebDriver.FindElement(USER_NAME_FIELD); } 
@@ -28,7 +33,7 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         }
         private IWebElement UserPasswordField
         {
-            get { return WebDriver.FindElement(USER_FIELD); }
+            get { return WebDriver.FindElement(USER_PASSWORD_FIELD); }
         }
         public IWebElement LoginBtn
         {
@@ -54,6 +59,7 @@ namespace AutomatedUIFramework.Pages.General.UAT1
 
         public HomePage LoginToApp()
         {
+            EnterButton.Click();
             UserNameField.Clear();
             UserNameField.SendKeys(ConfigurationManager.AppSettings["user"]);
             UserPasswordField.Clear();

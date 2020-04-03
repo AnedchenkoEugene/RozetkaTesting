@@ -47,6 +47,7 @@ namespace AutomatedUITests.SetUp
         {
             browser = new Browser();
             browser.Open();
+            browser.MaximizeWindow();
             pages = new Pages(browser);
         }
 
