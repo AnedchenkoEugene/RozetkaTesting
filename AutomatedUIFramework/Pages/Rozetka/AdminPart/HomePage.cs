@@ -16,9 +16,14 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         private By TAX_AGENCY_TAB = By.LinkText("TAX AGENCY");
         private By UTILITIES_TAB = By.LinkText("UTILITIES");
         private By LOGOUT_BTN = By.Id("ctl00_ctl00_cphMain_lnkLogout");
+        private By SEARCH_FIELD = By.Name("search");
+        private By SEARCH_BUTTON = By.ClassName("button button_color_green button_size_medium search-form__submit");
+        private By SELECT_PRODUCT = By.XPath("//div[@class='ng-lazyloaded']/img[1]");
+        private By BUY_PRODUCT_BUTTON = By.ClassName("buy-button button button_with_icon button_color_green button_size_large");
+        private By BUY_PRODUCT_BUTTON2 = By.ClassName("buy-button button button_with_icon button_color_green button_size_large");
         #endregion
-        #region UIElements
-        public IWebElement SearchButton
+        #region WebElements
+        public IWebElement SearchButtonLocator
         {
             get { return WebDriver.FindElement(SEARCH_BUTTON_LOCATOR); }
         }
@@ -35,13 +40,33 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             get { return WebDriver.FindElement(UTILITIES_TAB); }
         }
 
-        public IWebElement SearchField
+        public IWebElement SearchFieldLocator
         {
             get { return WebDriver.FindElement(SEARCH_FIELD_LOCATOR); }
         }
         public IWebElement AccountsBtn
         {
             get { return WebDriver.FindElement(ACCOUNTS_TAB); }
+        }
+        private IWebElement SearchField
+        {
+            get { return WebDriver.FindElement(SEARCH_FIELD); }
+        }
+        private IWebElement SearchButton
+        {
+            get { return WebDriver.FindElement(SEARCH_BUTTON); }
+        }
+        private IWebElement SelectProduct
+        {
+            get { return WebDriver.FindElement(SELECT_PRODUCT); }
+        }
+        private IWebElement BuyProductButton
+        {
+            get { return WebDriver.FindElement(BUY_PRODUCT_BUTTON); }
+        }
+        private IWebElement BuyProductButton2
+        {
+            get { return WebDriver.FindElement(BUY_PRODUCT_BUTTON2); }
         }
         #endregion
         #region Methods

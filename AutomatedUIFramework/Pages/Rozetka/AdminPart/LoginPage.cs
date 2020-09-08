@@ -8,10 +8,11 @@ namespace AutomatedUIFramework.Pages.General.UAT1
     {
         #region Locators
         private By ENTER_BUTTON = By.XPath("//a[@class='header-topline__user-link link-dashed']");
-        private By USER_NAME_FIELD = By.Id("email");
-        private By USER_PASSWORD_FIELD = By.Id("password");
-        private By LOGIN_BTN = By.XPath("//*[@id='app']/form/div[4]/button");
+        private By USER_NAME_FIELD = By.Id("auth_email");
+        private By USER_PASSWORD_FIELD = By.Id("auth_pass");
+        private By LOGIN_BTN = By.XPath("//button[contains(@class, 'button button--large button--green auth-modal__submit')]");
         private By ERROR_MESSAGE = By.Id("ctl00_ctl00_cphMain_cphMainContent_lblPageMessage");
+
 
         #endregion
         #region String Messages
@@ -61,11 +62,11 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         {
             EnterButton.Click();
             UserNameField.Clear();
-            UserNameField.SendKeys(ConfigurationManager.AppSettings["user"]);
+            UserNameField.SendKeys("developer2103@gmail.com");
             UserPasswordField.Clear();
-            UserPasswordField.SendKeys(ConfigurationManager.AppSettings["password"]);
+            UserPasswordField.SendKeys("00000012Sss");
             var homepage = new HomePage(WebDriver);
-            LoginBtn.ClickAndWaitForPageToLoad(homepage);
+            LoginBtn.Click();
             return homepage;
         }
         public LoginPage LoginWithInvalidCreds()
