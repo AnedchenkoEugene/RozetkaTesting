@@ -71,6 +71,7 @@
     <Compile Include="Configuration\Enviroments\Environments.cs" />
     <Compile Include="Configuration\Enviroments\EnvironmentsSection.cs" />
     <Compile Include="Configuration\Users\User.cs" />
+    <Compile Include="Pages\Rozetka\AdminPart\ProductPage.cs" />
     <Compile Include="Pages\Rozetka\Browser.cs" />
     <Compile Include="Pages\Rozetka\AdminPart\AccountsPage.cs" />
     <Compile Include="Pages\Rozetka\AdminPart\HomePage.cs" />

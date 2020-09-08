@@ -1,4 +1,5 @@
 ﻿using AutomatedUIFramework.Utility.Web;
+using AutomatedUIFrameworkTemplate.Pages.General.UAT1;
 using AutomatedUIFrameworkTemplate.Pages.Section1;
 using OpenQA.Selenium;
 using System.Configuration;
@@ -17,8 +18,8 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         private By UTILITIES_TAB = By.LinkText("UTILITIES");
         private By LOGOUT_BTN = By.Id("ctl00_ctl00_cphMain_lnkLogout");
         private By SEARCH_FIELD = By.Name("search");
-        private By SEARCH_BUTTON = By.ClassName("button button_color_green button_size_medium search-form__submit");
-        private By SELECT_PRODUCT = By.XPath("//div[@class='ng-lazyloaded']/img[1]");
+        private By SEARCH_BUTTON = By.XPath("//button[contains(@class, 'button button_color_green button_size_medium search-form__submit')]");
+        private By FIRST_PRODUCT = By.XPath("//li[@class='catalog-grid__cell catalog-grid__cell_type_slim'][1]");
         private By BUY_PRODUCT_BUTTON = By.ClassName("buy-button button button_with_icon button_color_green button_size_large");
         private By BUY_PRODUCT_BUTTON2 = By.ClassName("buy-button button button_with_icon button_color_green button_size_large");
         #endregion
@@ -56,9 +57,9 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         {
             get { return WebDriver.FindElement(SEARCH_BUTTON); }
         }
-        private IWebElement SelectProduct
+        private IWebElement FirstProduct
         {
-            get { return WebDriver.FindElement(SELECT_PRODUCT); }
+            get { return WebDriver.FindElement(FIRST_PRODUCT); }
         }
         private IWebElement BuyProductButton
         {
@@ -95,6 +96,26 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             LogOutBtn.ClickAndWaitForPageToLoad(loginPage);
             return loginPage;
         }
+        public HomePage SearchProduct(string product)
+        {
+            Thread.Sleep(3000);
+            SearchField.SendKeys(product);
+            Thread.Sleep(2000);
+            SearchButton.Click();
+            var homepage = new HomePage(WebDriver);
+            return homepage;
+        }
+        public ProductPage SelectFirstProduct()
+        {
+            Thread.Sleep(8000);
+            FirstProduct.Click();
+            Thread.Sleep(3000);
+            var productPage = new ProductPage(WebDriver);
+            return productPage;
+            
+        }
+
+
 
         #endregion
     }
