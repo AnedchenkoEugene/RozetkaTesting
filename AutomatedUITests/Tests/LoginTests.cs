@@ -13,16 +13,16 @@ namespace AutomatedUITestsTemplate.Tests
         [Description("Test verifies that user can login")]
         public void LoginWithValidCredsTest()
         {
-            var logoutBtn = pages.LoginPage.GoTo().LoginToApp();
-                                                       // .LogOutBtn;
+            var logoutBtn = pages.LoginPage.GoTo().LoginToApp()
+                                                  .SearchProduct("Iphone 11 Pro Max")
+                                                  .SelectFirstProduct()
+                                                  .SelectColorProduct()
+                                                  .SelectSpecificationsProduct()
+                                                  .SelectBasketButton()
+                                                  .AddOneProduct()
+                                                  .ExitTheBasket();
 
 
-
-            Assert.That(logoutBtn, Is.Not.Null);
-            Assert.Multiple(() =>
-            {
-              //  Assert.That(logoutBtn.Displayed, Is.True);
-            });
         }
         [Test]
         [RetryIfFailsAttribute]

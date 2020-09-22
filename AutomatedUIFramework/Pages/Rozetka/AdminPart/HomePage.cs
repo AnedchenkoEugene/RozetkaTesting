@@ -1,4 +1,5 @@
 ﻿using AutomatedUIFramework.Utility.Web;
+using AutomatedUIFrameworkTemplate.Pages.General.UAT1;
 using AutomatedUIFrameworkTemplate.Pages.Section1;
 using OpenQA.Selenium;
 using System.Configuration;
@@ -16,9 +17,12 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         private By TAX_AGENCY_TAB = By.LinkText("TAX AGENCY");
         private By UTILITIES_TAB = By.LinkText("UTILITIES");
         private By LOGOUT_BTN = By.Id("ctl00_ctl00_cphMain_lnkLogout");
+        private By SEARCH_FIELD = By.Name("search");
+        private By SEARCH_BUTTON = By.XPath("//button[contains(@class, 'button button_color_green button_size_medium search-form__submit')]");
+        private By FIRST_PRODUCT = By.XPath("/html/body/app-root/div/div[1]/app-rz-search/div/main/search-result/div[2]/section/app-search-goods/ul/li[1]/app-goods-tile-default/div/div[2]/a[1]/img[1]"); /// //li[@class='var-options__item'][4]
         #endregion
-        #region UIElements
-        public IWebElement SearchButton
+        #region WebElements
+        public IWebElement SearchButtonLocator
         {
             get { return WebDriver.FindElement(SEARCH_BUTTON_LOCATOR); }
         }
@@ -35,13 +39,25 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             get { return WebDriver.FindElement(UTILITIES_TAB); }
         }
 
-        public IWebElement SearchField
+        public IWebElement SearchFieldLocator
         {
             get { return WebDriver.FindElement(SEARCH_FIELD_LOCATOR); }
         }
         public IWebElement AccountsBtn
         {
             get { return WebDriver.FindElement(ACCOUNTS_TAB); }
+        }
+        private IWebElement SearchField
+        {
+            get { return WebDriver.FindElement(SEARCH_FIELD); }
+        }
+        private IWebElement SearchButton
+        {
+            get { return WebDriver.FindElement(SEARCH_BUTTON); }
+        }
+        private IWebElement FirstProduct
+        {
+            get { return WebDriver.FindElement(FIRST_PRODUCT); }
         }
         #endregion
         #region Methods
@@ -70,6 +86,26 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             LogOutBtn.ClickAndWaitForPageToLoad(loginPage);
             return loginPage;
         }
+        public HomePage SearchProduct(string product)
+        {
+            Thread.Sleep(3000);
+            SearchField.SendKeys(product);
+            Thread.Sleep(2000);
+            SearchButton.Click();
+            var homepage = new HomePage(WebDriver);
+            return homepage;
+        }
+        public ProductPage SelectFirstProduct()
+        {
+            Thread.Sleep(8000);
+            FirstProduct.Click();
+            Thread.Sleep(8000);
+            var productPage = new ProductPage(WebDriver);
+            return productPage;
+            
+        }
+
+
 
         #endregion
     }
