@@ -15,8 +15,14 @@ namespace AutomatedUITestsTemplate.Tests
         {
             var logoutBtn = pages.LoginPage.GoTo().LoginToApp()
                                                   .SearchProduct("Iphone 11 Pro Max")
-                                                  .SelectFirstProduct();
-                                                       
+                                                  .SelectFirstProduct()
+                                                  .SelectColorProduct()
+                                                  .SelectSpecificationsProduct()
+                                                  .SelectBasketButton()
+                                                  .AddOneProduct()
+                                                  .ExitTheBasket();
+
+
         }
         [Test]
         [RetryIfFailsAttribute]

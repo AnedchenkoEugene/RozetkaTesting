@@ -19,9 +19,7 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         private By LOGOUT_BTN = By.Id("ctl00_ctl00_cphMain_lnkLogout");
         private By SEARCH_FIELD = By.Name("search");
         private By SEARCH_BUTTON = By.XPath("//button[contains(@class, 'button button_color_green button_size_medium search-form__submit')]");
-        private By FIRST_PRODUCT = By.XPath("//li[@class='catalog-grid__cell catalog-grid__cell_type_slim'][1]");
-        private By BUY_PRODUCT_BUTTON = By.ClassName("buy-button button button_with_icon button_color_green button_size_large");
-        private By BUY_PRODUCT_BUTTON2 = By.ClassName("buy-button button button_with_icon button_color_green button_size_large");
+        private By FIRST_PRODUCT = By.XPath("/html/body/app-root/div/div[1]/app-rz-search/div/main/search-result/div[2]/section/app-search-goods/ul/li[1]/app-goods-tile-default/div/div[2]/a[1]/img[1]"); /// //li[@class='var-options__item'][4]
         #endregion
         #region WebElements
         public IWebElement SearchButtonLocator
@@ -60,14 +58,6 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         private IWebElement FirstProduct
         {
             get { return WebDriver.FindElement(FIRST_PRODUCT); }
-        }
-        private IWebElement BuyProductButton
-        {
-            get { return WebDriver.FindElement(BUY_PRODUCT_BUTTON); }
-        }
-        private IWebElement BuyProductButton2
-        {
-            get { return WebDriver.FindElement(BUY_PRODUCT_BUTTON2); }
         }
         #endregion
         #region Methods
@@ -109,7 +99,7 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         {
             Thread.Sleep(8000);
             FirstProduct.Click();
-            Thread.Sleep(3000);
+            Thread.Sleep(8000);
             var productPage = new ProductPage(WebDriver);
             return productPage;
             
