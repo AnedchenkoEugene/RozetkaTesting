@@ -21,6 +21,13 @@ namespace AutomatedUIFramework.Pages.General
                 return new LoginPage(webDriver);
             }
         }
+        public HomePage HomePage
+        {
+            get
+            {
+                return new HomePage(webDriver);
+            }
+        }
         public SearchResultsPage SearchResultsPage
         {
             get

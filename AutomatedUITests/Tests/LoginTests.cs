@@ -90,6 +90,18 @@ namespace AutomatedUITestsTemplate.Tests
                 Assert.That(loginBtn.Displayed, Is.True);
                 Assert.That(loginBtn.Displayed, Is.True); Assert.That(loginBtn.Displayed, Is.True);
             });
+
+        }
+        [Test]
+        [Category("Login Tests")]
+        [Description("Test verifies that user can login")]
+        public void CityWithWalidData()
+        {
+            var cityName = pages.HomePage.GoTo().SelectTown()
+                                                  .SelectTownField()
+                                                  .SelectApplyTown();
+
+
         }
     }
 }
