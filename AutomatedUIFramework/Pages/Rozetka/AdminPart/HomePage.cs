@@ -20,7 +20,7 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         private By SEARCH_FIELD = By.Name("search");
         private By SEARCH_BUTTON = By.XPath("//button[contains(@class, 'button button_color_green button_size_medium search-form__submit')]");
         private By FIRST_PRODUCT = By.XPath("/html/body/app-root/div/div[1]/app-rz-search/div/main/search-result/div[2]/section/app-search-goods/ul/li[1]/app-goods-tile-default/div/div[2]/a[1]/img[1]"); /// //li[@class='var-options__item'][4]
-        private By TOWN_BUTTON = By.XPath("//a[@class='header-cities__link link-dashed']");
+        private By CITY_BUTTON = By.XPath("//a[@class='header-cities__link link-dashed']");
         #endregion
         #region WebElements
         public IWebElement SearchButtonLocator
@@ -60,9 +60,9 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         {
             get { return WebDriver.FindElement(FIRST_PRODUCT); }
         }
-        private IWebElement TownButton
+        private IWebElement CityButton
         {
-            get { return WebDriver.FindElement(TOWN_BUTTON); }
+            get { return WebDriver.FindElement(CITY_BUTTON); }
         }
         #endregion
         #region Methods
@@ -114,13 +114,13 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             return productPage;
             
         }
-        public TownPage SelectTown()
+        public CityPage SelectCity()
         {
             Thread.Sleep(5000);
-            TownButton.Click();
+            CityButton.Click();
             Thread.Sleep(5000);
-            var townPage = new TownPage(WebDriver);
-            return townPage;
+            var cityPage = new CityPage(WebDriver);
+            return cityPage;
 
         }
 

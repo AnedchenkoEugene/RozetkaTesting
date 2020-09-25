@@ -95,11 +95,11 @@ namespace AutomatedUITestsTemplate.Tests
         [Test]
         [Category("Login Tests")]
         [Description("Test verifies that user can login")]
-        public void CityWithWalidData()
+        public void CityWithValidData()
         {
-            var cityName = pages.HomePage.GoTo().SelectTown()
-                                                  .SelectTownField()
-                                                  .SelectApplyTown();
+            var cityName = pages.HomePage.GoTo().SelectCity()
+                                                  .SelectCityField()
+                                                  .SelectApplyCity();
 
 
         }
