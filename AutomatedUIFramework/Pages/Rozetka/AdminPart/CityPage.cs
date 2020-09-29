@@ -15,15 +15,12 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
     public class CityPage : WebPage
     {
         #region Locators
-        private By CITY_BUTTON = By.XPath("//input[@class='autocomplete__input ng-untouched ng-pristine ng-valid']");
-        private By CITY_FIELD = By.XPath("//div[@class='autocomplete']"); //input[@class='autocomplete__input ng-pristine ng-valid ng-touched']
-        private By APPLY_CITY = By.XPath("//li[@class='autocomplete__item dialog_list']");
+        private By CITY_FIELD = By.CssSelector("#cityinput > div > input"); 
+        private By APPLY_CITY = By.CssSelector("#cityinput > div > ul > li");
+        private By FINAL_CONFIRMATION = By.XPath("//button[text()=' Применить ']");
         #endregion
         #region UI Elemets
-        public IWebElement CityButton
-        {
-            get { return WebDriver.FindElement(CITY_BUTTON); }
-        }
+
         public IWebElement CityField
         {
             get { return WebDriver.FindElement(CITY_FIELD); }
@@ -31,6 +28,10 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         public IWebElement ApplyCity
         {
             get { return WebDriver.FindElement(APPLY_CITY); }
+        }
+        public IWebElement FinalConfirmation
+        {
+            get { return WebDriver.FindElement(FINAL_CONFIRMATION); }
         }
 
 
@@ -56,16 +57,22 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
             return cityPage;
 
         }
-        public HomePage SelectApplyCity()
+        public CityPage SelectApplyCity()
         {
             Thread.Sleep(3000);
             ApplyCity.Click();
             Thread.Sleep(3000);
-            var homePage = new HomePage(WebDriver);
-            return homePage;
+            var cityPage = new CityPage(WebDriver);
+            return cityPage;
         }
-
-
+        public HomePage FinalSelectApplyCity()
+        {
+            Thread.Sleep(3000);
+            FinalConfirmation.Click();
+            Thread.Sleep(3000);
+            var homePage = new HomePage(WebDriver);
+            return homePage; 
+        }
 
     }
 }

@@ -81,6 +81,7 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
             var productPage = new ProductPage(WebDriver);   
             return productPage;
         }
+
         #endregion
     }
 }

@@ -124,9 +124,6 @@ namespace AutomatedUIFramework.Pages.General.UAT1
 
         }
 
-
-
-
         #endregion
     }
 }

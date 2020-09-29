@@ -99,8 +99,10 @@ namespace AutomatedUITestsTemplate.Tests
         {
             var cityName = pages.HomePage.GoTo().SelectCity()
                                                   .SelectCityField()
-                                                  .SelectApplyCity();
+                                                  .SelectApplyCity()
+                                                  .FinalSelectApplyCity();
 
+            //Assert.IsTrue(verifyTextPresent("Текст"));
 
         }
     }

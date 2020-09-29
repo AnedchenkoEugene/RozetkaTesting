@@ -108,8 +108,6 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             return loginPage;
         }
 
-
-
         #endregion
     }
 }

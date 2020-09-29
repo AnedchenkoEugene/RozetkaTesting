@@ -68,11 +68,7 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
             return basketPage;
         }
 
-
-
-
         #endregion
-
     }
 }
 
