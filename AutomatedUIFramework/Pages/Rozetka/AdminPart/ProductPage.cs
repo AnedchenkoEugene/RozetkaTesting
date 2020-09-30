@@ -17,7 +17,8 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         #region Locators
         private By PRODUCT_COLOR = By.XPath("//span[@style='background-color: rgb(102, 102, 102);']");
         private By PRODUCT_SPECIFICATIONS = By.XPath("/html/body/app-root/div/div[1]/app-rz-product/div/rz-product-navbar/rz-tabs/div/div/ul/li[2]/a");
-        private By BASKET_BUTTON = By.XPath("//span[@class='buy-button__label']");
+        private By BUY_BUTTON = By.XPath("//span[@class='buy-button__label']");
+        private By BASKET_BUTTON = By.XPath("//a[@_ngcontent-c11]");
         #endregion
         #region WebElemets
         public IWebElement ProductColor
@@ -27,6 +28,10 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         public IWebElement ProductSpecifications
         {
             get { return WebDriver.FindElement(PRODUCT_SPECIFICATIONS); }
+        }
+        private IWebElement BuyButton
+        {
+            get { return WebDriver.FindElement(BUY_BUTTON); }
         }
         private IWebElement BasketButton
         {
@@ -59,15 +64,23 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
             var productPage = new ProductPage(WebDriver);
             return productPage;
         }
-        public BasketPage SelectBasketButton()
+        public BasketPage BuyProduct()
         {
-            Thread.Sleep(7000);
+            Thread.Sleep(5000);
+            BuyButton.Click();
+            Thread.Sleep(5000);
+            var basketPage = new BasketPage(WebDriver);
+            return basketPage;
+        }
+        public BasketPage SelectBasket()
+        {
+            Thread.Sleep(5000);
             BasketButton.Click();
             Thread.Sleep(5000);
             var basketPage = new BasketPage(WebDriver);
             return basketPage;
         }
-
+        
         #endregion
     }
 }

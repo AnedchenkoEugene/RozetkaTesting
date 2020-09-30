@@ -18,7 +18,7 @@ namespace AutomatedUITestsTemplate.Tests
                                                   .SelectFirstProduct()
                                                   .SelectColorProduct()
                                                   .SelectSpecificationsProduct()
-                                                  .SelectBasketButton()
+                                                  .BuyProduct()
                                                   .AddOneProduct()
                                                   .ExitTheBasket();
 
@@ -95,14 +95,36 @@ namespace AutomatedUITestsTemplate.Tests
         [Test]
         [Category("Login Tests")]
         [Description("Test verifies that user can login")]
-        public void CityWithValidData()
+        public void CityWithValidDataTest()
         {
             var cityName = pages.HomePage.GoTo().SelectCity()
                                                   .SelectCityField()
                                                   .SelectApplyCity()
                                                   .FinalSelectApplyCity();
 
-            //Assert.IsTrue(verifyTextPresent("Текст"));
+            ///Assert.IsTrue(verifyTextPresent("Новая Каховка"));
+
+        }
+        [Test]
+        [Category("Login Tests")]
+        [Description("Test verifies that user can login")]
+        public void LoginWithAddingAndRemovingFromBasketTest()
+        {
+            var basketFunctions = pages.LoginPage.GoTo().LoginToApp()
+                                                        .SearchProduct("Samsung Galaxy Watch 40mm")
+                                                        .SelectFirstProduct()
+                                                        .BuyProduct()
+                                                        .ExitTheBasket()
+                                                        .SelectBasket()
+                                                        .OpenBasketMenu()
+                                                        .EraseBasket()
+                                                        .ExitTheBasket()
+                                                        .SelectBasket();
+                                                        
+                                                        
+                                                  
+
+            
 
         }
     }
