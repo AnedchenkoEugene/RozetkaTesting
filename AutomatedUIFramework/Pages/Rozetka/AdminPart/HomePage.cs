@@ -123,6 +123,11 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             return cityPage;
 
         }
+        public string GetCityName()
+        {
+            string cityName = CityButton.Text;
+            return cityName;
+        }
 
         #endregion
     }

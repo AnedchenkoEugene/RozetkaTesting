@@ -18,6 +18,8 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         private By BASKET_MENU_BUTTON = By.XPath("//button[@class='button button--white button--small cart-actions__toggle']");
         private By ERASE_BASKET_BUTTON = By.XPath("//li[@class='cart-actions__item']");
         private By EXIT_BASKET_BUTTON = By.XPath("//button[@class='modal__close']");
+        private By BASKET_PRODUCT = By.XPath("//a[@class='cart-product__title']");
+        private By EMPTY_BASKET = By.XPath("//h4[@class='cart-dummy__heading']");
         #endregion
         #region UI Elemets
         public IWebElement OneProductButton
@@ -36,6 +38,14 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         {
             get { return WebDriver.FindElement(EXIT_BASKET_BUTTON); }
         }
+        public IWebElement BasketProduct
+        {
+            get { return WebDriver.FindElement(BASKET_PRODUCT); }
+        }
+        public IWebElement EmptyBasket
+        {
+            get { return WebDriver.FindElement(EMPTY_BASKET); }
+        }
 
         #endregion
         #region Methods
@@ -43,6 +53,11 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         {
             PageTitle = "";
             RelativePageAddress = "";
+        }
+        public new BasketPage GoTo()
+        {
+            base.GoTo();
+            return this;
         }
 
 
@@ -81,6 +96,17 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
             var productPage = new ProductPage(WebDriver);   
             return productPage;
         }
+        public string GetProductName()
+        {
+            string item = BasketProduct.Text;
+            return item;
+        }
+        public string GetBasketStatus()
+        {
+            string items = EmptyBasket.Text;
+            return items;
+        }
+
 
         #endregion
     }

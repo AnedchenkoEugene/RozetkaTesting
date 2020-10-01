@@ -1,4 +1,5 @@
 ﻿using AutomatedUIFramework.Pages.General.UAT1;
+using AutomatedUIFrameworkTemplate.Pages.General.UAT1;
 using AutomatedUIFrameworkTemplate.Pages.Section1;
 using OpenQA.Selenium;
 
@@ -34,6 +35,15 @@ namespace AutomatedUIFramework.Pages.General
             {
                 return new SearchResultsPage(webDriver);
             }
+
         }
+        public BasketPage BasketPage
+        {
+            get
+            {
+                return new BasketPage(webDriver);
+            }
+        }
+
     }
 }

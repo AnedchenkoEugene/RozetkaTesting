@@ -97,12 +97,14 @@ namespace AutomatedUITestsTemplate.Tests
         [Description("Test verifies that user can login")]
         public void CityWithValidDataTest()
         {
+            string city = "Новая Каховка";
             var cityName = pages.HomePage.GoTo().SelectCity()
-                                                  .SelectCityField()
+                                                  .SelectCityField(city)
                                                   .SelectApplyCity()
-                                                  .FinalSelectApplyCity();
+                                                  .FinalSelectApplyCity()
+                                                  .GetCityName();
 
-            ///Assert.IsTrue(verifyTextPresent("Новая Каховка"));
+            Assert.IsTrue(cityName.Contains(city));
 
         }
         [Test]
@@ -110,22 +112,25 @@ namespace AutomatedUITestsTemplate.Tests
         [Description("Test verifies that user can login")]
         public void LoginWithAddingAndRemovingFromBasketTest()
         {
-            var basketFunctions = pages.LoginPage.GoTo().LoginToApp()
-                                                        .SearchProduct("Samsung Galaxy Watch 40mm")
-                                                        .SelectFirstProduct()
-                                                        .BuyProduct()
-                                                        .ExitTheBasket()
-                                                        .SelectBasket()
-                                                        .OpenBasketMenu()
-                                                        .EraseBasket()
-                                                        .ExitTheBasket()
-                                                        .SelectBasket();
-                                                        
-                                                        
-                                                  
-
+            string item = "Samsung Galaxy Watch 40mm";
             
 
+            var basketFunctions = pages.LoginPage.GoTo().LoginToApp()
+                                                         .SearchProduct(item)
+                                                         .SelectFirstProduct()
+                                                         .BuyProduct()
+                                                         .ExitTheBasket()
+                                                         .SelectBasket()
+                                                         .GetProductName();
+
+            var basketStatus = pages.BasketPage.OpenBasketMenu()
+                                               .EraseBasket()
+                                               .ExitTheBasket()
+                                               .SelectBasket()
+                                               .GetBasketStatus();
+
+            Assert.IsTrue(basketFunctions.Contains(item));
+            Assert.IsTrue(basketStatus.Contains("Корзина пуста"));
         }
     }
 }

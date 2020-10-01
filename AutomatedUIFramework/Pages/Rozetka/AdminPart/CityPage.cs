@@ -46,12 +46,12 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
 
 
 
-        public CityPage SelectCityField()
+        public CityPage SelectCityField(string city)
         {
             Thread.Sleep(5000);
             CityField.Click();
             CityField.Clear();
-            CityField.SendKeys("Новая Каховка");
+            CityField.SendKeys(city);
             Thread.Sleep(5000);
             var cityPage = new CityPage(WebDriver);
             return cityPage;
