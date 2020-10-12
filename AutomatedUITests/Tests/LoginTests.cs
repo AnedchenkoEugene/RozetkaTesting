@@ -1,12 +1,14 @@
 ﻿using AutomatedUIFramework.Pages.General.UAT1;
 using AutomatedUIFramework.Utility.Web.CustomAttributes;
+using AutomatedUIFrameworkTemplate.Pages.General.UAT1;
 using AutomatedUITests.SetUp;
 using NUnit.Framework;
-
+using NUnit.Framework.Constraints;
+using System.Security.Cryptography.X509Certificates;
 
 namespace AutomatedUITestsTemplate.Tests
 {
-    public class LoginTests :BasicTest
+    public class LoginTests : BasicTest
     {
         [Test]
         [Category("Login Tests")]
@@ -15,8 +17,9 @@ namespace AutomatedUITestsTemplate.Tests
         {
             var logoutBtn = pages.LoginPage.GoTo().LoginToApp()
                                                   .SearchProduct("Iphone 11 Pro Max")
+                                                  .ClickOnTheSearchButton()
                                                   .SelectFirstProduct()
-                                                  .SelectColorProduct()
+                                                  //.SelectColorProduct()
                                                   .SelectSpecificationsProduct()
                                                   .BuyProduct()
                                                   .AddOneProduct()
@@ -113,10 +116,11 @@ namespace AutomatedUITestsTemplate.Tests
         public void LoginWithAddingAndRemovingFromBasketTest()
         {
             string item = "Samsung Galaxy Watch 40mm";
-            
+
 
             var basketFunctions = pages.LoginPage.GoTo().LoginToApp()
                                                          .SearchProduct(item)
+                                                         .ClickOnTheSearchButton()
                                                          .SelectFirstProduct()
                                                          .BuyProduct()
                                                          .ExitTheBasket()
@@ -131,6 +135,47 @@ namespace AutomatedUITestsTemplate.Tests
 
             Assert.IsTrue(basketFunctions.Contains(item));
             Assert.IsTrue(basketStatus.Contains("Корзина пуста"));
+        }
+        [Test]
+        [Category("Login Tests")]
+        [Description("Test verifies that user can login")]
+        
+        public void PriceCheckTest()
+        {
+            string search = "Apple Magic Mouse 2 Bluetooth";
+            int quantity = 10;
+            
+
+
+            var priceCheck = pages.HomePage.GoTo().SearchProduct(search)
+                                                         .SelectFirstProduct()
+                                                         .BuyProduct()
+                                                         .GetProductPrice();
+
+            var priceNewCheck = pages.BasketPage.ChangeProductQuantity(quantity)
+                                                .GetProductPrice();
+
+            Assert.AreEqual(priceCheck, priceNewCheck/quantity);
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

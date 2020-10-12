@@ -1,5 +1,6 @@
 ﻿using AutomatedUIFramework.Utility.Web;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System.Configuration;
 
 namespace AutomatedUIFramework.Pages.General.UAT1
@@ -65,9 +66,11 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             UserNameField.SendKeys("developer2103@gmail.com");
             UserPasswordField.Clear();
             UserPasswordField.SendKeys("00000012Sss");
-            var homepage = new HomePage(WebDriver);
+            var homePage = new HomePage(WebDriver);
             LoginBtn.Click();
-            return homepage;
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(2));
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//button[contains(@class, 'button button--large button--green auth-modal__submit')]")));
+            return homePage;
         }
         public LoginPage LoginWithInvalidCreds()
         {

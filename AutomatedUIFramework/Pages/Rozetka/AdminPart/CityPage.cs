@@ -48,29 +48,32 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
 
         public CityPage SelectCityField(string city)
         {
-            Thread.Sleep(5000);
+           //// Thread.Sleep(5000);
             CityField.Click();
             CityField.Clear();
             CityField.SendKeys(city);
-            Thread.Sleep(5000);
+            ////Thread.Sleep(5000);
             var cityPage = new CityPage(WebDriver);
+            CityField.ClickAndWaitForPageToLoad(cityPage);
             return cityPage;
 
         }
         public CityPage SelectApplyCity()
         {
-            Thread.Sleep(3000);
+           //// Thread.Sleep(3000);
             ApplyCity.Click();
-            Thread.Sleep(3000);
+           //// Thread.Sleep(3000);
             var cityPage = new CityPage(WebDriver);
+            ApplyCity.ClickAndWaitForPageToLoad(cityPage);
             return cityPage;
         }
         public HomePage FinalSelectApplyCity()
         {
-            Thread.Sleep(3000);
+           //// Thread.Sleep(3000);
             FinalConfirmation.Click();
-            Thread.Sleep(3000);
+            ////Thread.Sleep(3000);
             var homePage = new HomePage(WebDriver);
+            FinalConfirmation.ClickAndWaitForPageToLoad(homePage);
             return homePage; 
         }
 

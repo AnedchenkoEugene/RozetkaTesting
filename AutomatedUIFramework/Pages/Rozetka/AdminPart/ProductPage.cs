@@ -2,6 +2,7 @@
 using AutomatedUIFramework.Utility.Web;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,7 +17,7 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
     {
         #region Locators
         private By PRODUCT_COLOR = By.XPath("//span[@style='background-color: rgb(102, 102, 102);']");
-        private By PRODUCT_SPECIFICATIONS = By.XPath("/html/body/app-root/div/div[1]/app-rz-product/div/rz-product-navbar/rz-tabs/div/div/ul/li[2]/a");
+        private By PRODUCT_SPECIFICATIONS = By.XPath("//a[@class='tabs__link']");
         private By BUY_BUTTON = By.XPath("//span[@class='buy-button__label']");
         private By BASKET_BUTTON = By.XPath("//a[@_ngcontent-c11]");
         #endregion
@@ -49,35 +50,35 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
 
         public ProductPage SelectColorProduct()
         {
-            Thread.Sleep(7000);
-            ProductColor.Click();
-            Thread.Sleep(5000);
             var productPage = new ProductPage(WebDriver);
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[@style='background-color: rgb(102, 102, 102);']")));
+            ProductColor.Click();
             return productPage;
         }
 
         public ProductPage SelectSpecificationsProduct()
         {
-            Thread.Sleep(7000);
-            ProductSpecifications.Click();
-            Thread.Sleep(5000);
             var productPage = new ProductPage(WebDriver);
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[@class='tabs__link']")));
+            ProductSpecifications.Click();
             return productPage;
         }
         public BasketPage BuyProduct()
         {
-            Thread.Sleep(5000);
-            BuyButton.Click();
-            Thread.Sleep(5000);
             var basketPage = new BasketPage(WebDriver);
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(BuyButton));
+            BuyButton.Click();
             return basketPage;
         }
         public BasketPage SelectBasket()
         {
-            Thread.Sleep(5000);
-            BasketButton.Click();
-            Thread.Sleep(5000);
             var basketPage = new BasketPage(WebDriver);
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(BasketButton));
+            BasketButton.Click();
             return basketPage;
         }
         

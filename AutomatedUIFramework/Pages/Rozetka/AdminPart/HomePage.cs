@@ -2,6 +2,7 @@
 using AutomatedUIFrameworkTemplate.Pages.General.UAT1;
 using AutomatedUIFrameworkTemplate.Pages.Section1;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System.Configuration;
 using System.Threading;
 
@@ -18,8 +19,8 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         private By UTILITIES_TAB = By.LinkText("UTILITIES");
         private By LOGOUT_BTN = By.Id("ctl00_ctl00_cphMain_lnkLogout");
         private By SEARCH_FIELD = By.Name("search");
-        private By SEARCH_BUTTON = By.XPath("//button[contains(@class, 'button button_color_green button_size_medium search-form__submit')]");
-        private By FIRST_PRODUCT = By.XPath("/html/body/app-root/div/div[1]/app-rz-search/div/main/search-result/div[2]/section/app-search-goods/ul/li[1]/app-goods-tile-default/div/div[2]/a[1]/img[1]"); /// //li[@class='var-options__item'][4]
+        private By SEARCH_BUTTON = By.XPath("//button[@class='button button_color_green button_size_medium search-form__submit']");
+        private By FIRST_PRODUCT = By.XPath("//a[@class='goods-tile__picture']"); /// //li[@class='var-options__item'][4]
         private By CITY_BUTTON = By.XPath("//a[@class='header-cities__link link-dashed']");
         #endregion
         #region WebElements
@@ -85,41 +86,49 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         public AccountsPage GoToAccountsPage()
         {
             var accountsPage = new AccountsPage(WebDriver);
-            Thread.Sleep(500);
+            ////Thread.Sleep(500);
             AccountsBtn.ClickAndWaitForPageToLoad(accountsPage);
             return accountsPage;
         }
         public LoginPage CheckLogOutOption()
         {
-            Thread.Sleep(900);
+           ///// Thread.Sleep(900);
             var loginPage = new LoginPage(WebDriver);
             LogOutBtn.ClickAndWaitForPageToLoad(loginPage);
             return loginPage;
         }
         public HomePage SearchProduct(string product)
         {
-            Thread.Sleep(3000);
             SearchField.SendKeys(product);
-            Thread.Sleep(2000);
+            var homePage = new HomePage(WebDriver);
+            return homePage;
+        }
+        public HomePage ClickOnTheSearchButton()
+        {
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[@class='button button_color_green button_size_medium search-form__submit']")));
             SearchButton.Click();
-            var homepage = new HomePage(WebDriver);
-            return homepage;
+            var homePage = new HomePage(WebDriver);
+            return homePage;
+            
         }
         public ProductPage SelectFirstProduct()
         {
-            Thread.Sleep(5000);
-            FirstProduct.Click();
-            Thread.Sleep(5000);
             var productPage = new ProductPage(WebDriver);
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[@class='goods-tile__picture']")));
+            FirstProduct.Click();
             return productPage;
+
             
         }
         public CityPage SelectCity()
         {
-            Thread.Sleep(5000);
+           //// Thread.Sleep(5000);
             CityButton.Click();
-            Thread.Sleep(5000);
+           //// Thread.Sleep(5000);
             var cityPage = new CityPage(WebDriver);
+            CityButton.ClickAndWaitForPageToLoad(cityPage);
             return cityPage;
 
         }
