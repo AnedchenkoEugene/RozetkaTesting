@@ -67,18 +67,18 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         }
         public BasketPage BuyProduct()
         {
-            var basketPage = new BasketPage(WebDriver);
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementToBeClickable(BuyButton));
             BuyButton.Click();
+            var basketPage = new BasketPage(WebDriver);
             return basketPage;
         }
         public BasketPage SelectBasket()
         {
-            var basketPage = new BasketPage(WebDriver);
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementToBeClickable(BasketButton));
             BasketButton.Click();
+            var basketPage = new BasketPage(WebDriver);
             return basketPage;
         }
         

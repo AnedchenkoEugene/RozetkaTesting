@@ -2,6 +2,7 @@
 using AutomatedUIFramework.Pages.General.UAT1;
 using AutomatedUIFramework.Utility.Web;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -48,32 +49,29 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
 
         public CityPage SelectCityField(string city)
         {
-           //// Thread.Sleep(5000);
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(CityField));
             CityField.Click();
             CityField.Clear();
             CityField.SendKeys(city);
-            ////Thread.Sleep(5000);
             var cityPage = new CityPage(WebDriver);
-            CityField.ClickAndWaitForPageToLoad(cityPage);
             return cityPage;
 
         }
         public CityPage SelectApplyCity()
         {
-           //// Thread.Sleep(3000);
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(ApplyCity));
             ApplyCity.Click();
-           //// Thread.Sleep(3000);
             var cityPage = new CityPage(WebDriver);
-            ApplyCity.ClickAndWaitForPageToLoad(cityPage);
             return cityPage;
         }
         public HomePage FinalSelectApplyCity()
         {
-           //// Thread.Sleep(3000);
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(FinalConfirmation));
             FinalConfirmation.Click();
-            ////Thread.Sleep(3000);
             var homePage = new HomePage(WebDriver);
-            FinalConfirmation.ClickAndWaitForPageToLoad(homePage);
             return homePage; 
         }
 

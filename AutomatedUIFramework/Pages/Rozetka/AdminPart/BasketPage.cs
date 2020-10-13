@@ -17,7 +17,7 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
     {
         #region Locators
         private By ONE_PRODUCT_BUTTON = By.XPath("//button[@aria-label='Добавить ещё один товар']");
-        private By BASKET_MENU_BUTTON = By.XPath("//button[@class='button button--white button--small cart-actions__toggle']");
+        private By OPEN_BASKET_MENU_BUTTON = By.XPath("//div[@class='cart-actions']");
         private By ERASE_BASKET_BUTTON = By.XPath("//li[@class='cart-actions__item']");
         private By EXIT_BASKET_BUTTON = By.XPath("//button[@class='modal__close']");
         private By BASKET_PRODUCT = By.XPath("//a[@class='cart-product__title']");
@@ -30,9 +30,9 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         {
             get { return WebDriver.FindElement(ONE_PRODUCT_BUTTON); }
         }
-        public IWebElement BasketMenuButton
+        public IWebElement OpenBasketMenuButton
         {
-            get { return WebDriver.FindElement(BASKET_MENU_BUTTON); }
+            get { return WebDriver.FindElement(OPEN_BASKET_MENU_BUTTON); }
         }
         public IWebElement EraseBasketButton
         {
@@ -76,67 +76,70 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
 
         public BasketPage AddOneProduct()
         {
-            var basketPage = new BasketPage(WebDriver);
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementToBeClickable(OneProductButton));
             OneProductButton.Click();
+            var basketPage = new BasketPage(WebDriver);
             return basketPage;
 
         }
         public BasketPage OpenBasketMenu()
-        {
-            var basketPage = new BasketPage(WebDriver);
+        { 
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementToBeClickable(BasketMenuButton));
-            BasketMenuButton.Click();
+            wait.Until(ExpectedConditions.ElementToBeClickable(OpenBasketMenuButton));
+            OpenBasketMenuButton.Click();
+            var basketPage = new BasketPage(WebDriver);
             return basketPage;
 
 
         }
         public BasketPage EraseBasket()
         {
-            var basketPage = new BasketPage(WebDriver);
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementToBeClickable(EraseBasketButton));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//li[@class='cart-actions__item']")));
             EraseBasketButton.Click();
+            var basketPage = new BasketPage(WebDriver);
             return basketPage;
         }
         public ProductPage ExitTheBasket()
         {
-            var productPage = new ProductPage(WebDriver);
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementToBeClickable(ExitBasketButton));
             ExitBasketButton.Click();
+            var productPage = new ProductPage(WebDriver);
             return productPage;
         }
         public string GetProductName()
         {
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[@class='cart-product__title']")));
             string item = BasketProduct.Text;
             return item;
         }
         public string GetBasketStatus()
         {
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h4[@class='cart-dummy__heading']")));
             string items = EmptyBasket.Text;
             return items;
         }
         public BasketPage ChangeProductQuantity(int quantity)
         {
-           //// Thread.Sleep(3000);
-           
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(ProductQuantity));
             ProductQuantity.Click();
             ProductQuantity.Clear();
             ProductQuantity.SendKeys(quantity.ToString());
             ProductQuantity.SendKeys(Keys.Enter);
             var basketPage = new BasketPage(WebDriver);
-            ProductQuantity.ClickAndWaitForPageToLoad(basketPage);
-            
-
             return basketPage;
         }
         public int GetProductPrice()
         {
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='cart-receipt__sum-price']")));
             string prodPrice = ProductPrice.Text;
-            string data = Regex.Match(prodPrice, @"/(\d)(?= \d) /g").Value;
+            string data = Regex.Match(prodPrice, @"\s[0-9]\d").Value;
             return Convert.ToInt32(data);
         }
         

@@ -124,11 +124,10 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         }
         public CityPage SelectCity()
         {
-           //// Thread.Sleep(5000);
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(CityButton));
             CityButton.Click();
-           //// Thread.Sleep(5000);
             var cityPage = new CityPage(WebDriver);
-            CityButton.ClickAndWaitForPageToLoad(cityPage);
             return cityPage;
 
         }

@@ -11,7 +11,7 @@ namespace AutomatedUIFramework.Pages.General.UAT1
         private By ENTER_BUTTON = By.XPath("//a[@class='header-topline__user-link link-dashed']");
         private By USER_NAME_FIELD = By.Id("auth_email");
         private By USER_PASSWORD_FIELD = By.Id("auth_pass");
-        private By LOGIN_BTN = By.XPath("//button[contains(@class, 'button button--large button--green auth-modal__submit')]");
+        private By LOGIN_BTN = By.XPath("//button[@class='button button--large button--green auth-modal__submit']");
         private By ERROR_MESSAGE = By.Id("ctl00_ctl00_cphMain_cphMainContent_lblPageMessage");
 
 
@@ -69,7 +69,7 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             var homePage = new HomePage(WebDriver);
             LoginBtn.Click();
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(2));
-            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//button[contains(@class, 'button button--large button--green auth-modal__submit')]")));
+            wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//button[@class='button button--large button--green auth-modal__submit']")));
             return homePage;
         }
         public LoginPage LoginWithInvalidCreds()
