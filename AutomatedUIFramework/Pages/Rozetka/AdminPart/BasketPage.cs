@@ -137,10 +137,11 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         public int GetProductPrice()
         {
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='cart-receipt__sum-price']")));
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//div[@class='cart-receipt__sum-price']")));
             string prodPrice = ProductPrice.Text;
-            string data = Regex.Match(prodPrice, @"\s[0-9]\d").Value;
-            return Convert.ToInt32(data);
+            string data = Regex.Match(prodPrice, @"\d\s[0-9]+").Value;
+            var test = string.Join("", data.ToCharArray().Where(Char.IsDigit));
+            return Convert.ToInt32(test);
         }
         
         #endregion
