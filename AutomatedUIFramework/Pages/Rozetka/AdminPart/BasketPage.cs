@@ -96,7 +96,7 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         public BasketPage EraseBasket()
         {
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//li[@class='cart-actions__item']")));
+            wait.Until(ExpectedConditions.ElementToBeClickable(EraseBasketButton));
             EraseBasketButton.Click();
             var basketPage = new BasketPage(WebDriver);
             return basketPage;
@@ -104,7 +104,7 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         public ProductPage ExitTheBasket()
         {
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementToBeClickable(ExitBasketButton));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[@class='modal__close']")));
             ExitBasketButton.Click();
             var productPage = new ProductPage(WebDriver);
             return productPage;

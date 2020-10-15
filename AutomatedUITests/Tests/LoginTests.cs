@@ -19,7 +19,7 @@ namespace AutomatedUITestsTemplate.Tests
                                                   .SearchProduct("Iphone 11 Pro Max")
                                                   .ClickOnTheSearchButton()
                                                   .SelectFirstProduct()
-                                                  //.SelectColorProduct()
+                                                  .SelectColorProduct()
                                                   .SelectSpecificationsProduct()
                                                   .BuyProduct()
                                                   .AddOneProduct()

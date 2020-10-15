@@ -52,7 +52,7 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         {
             var productPage = new ProductPage(WebDriver);
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[@style='background-color: rgb(102, 102, 102);']")));
+            wait.Until(ExpectedConditions.ElementToBeClickable(ProductColor));
             ProductColor.Click();
             return productPage;
         }
