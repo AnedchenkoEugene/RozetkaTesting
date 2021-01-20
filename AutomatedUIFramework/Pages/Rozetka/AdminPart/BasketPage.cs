@@ -84,10 +84,13 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
 
         }
         public BasketPage OpenBasketMenu()
-        { 
+        {
+            Thread.Sleep(2000);
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementToBeClickable(OpenBasketMenuButton));
             OpenBasketMenuButton.Click();
+            Thread.Sleep(2000);
+            wait.Until(ExpectedConditions.ElementToBeClickable(EraseBasketButton));
             var basketPage = new BasketPage(WebDriver);
             return basketPage;
 
@@ -138,10 +141,10 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         {
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//div[@class='cart-receipt__sum-price']")));
-            string prodPrice = ProductPrice.Text;
-            string data = Regex.Match(prodPrice, @"\d\s[0-9]+").Value;
-            var test = string.Join("", data.ToCharArray().Where(Char.IsDigit));
-            return Convert.ToInt32(test);
+            string prodPrice = ProductPrice.Text.Replace(" ₴", "");
+            //string data = Regex.Match(prodPrice, @"([\d] +)").Value;
+            //var test = string.Join("", data.ToCharArray().Where(Char.IsDigit));
+            return Convert.ToInt32(prodPrice);
         }
         
         #endregion

@@ -124,13 +124,13 @@ namespace AutomatedUITestsTemplate.Tests
                                                          .SelectFirstProduct()
                                                          .BuyProduct()
                                                          .ExitTheBasket()
-                                                         .SelectBasket()
+                                                         .OpenBasket()
                                                          .GetProductName();
 
             var basketStatus = pages.BasketPage.OpenBasketMenu()
                                                .EraseBasket()
                                                .ExitTheBasket()
-                                               .SelectBasket()
+                                               .OpenBasket()
                                                .GetBasketStatus();
 
             ///Assert.IsTrue(basketFunctions.Contains(item));

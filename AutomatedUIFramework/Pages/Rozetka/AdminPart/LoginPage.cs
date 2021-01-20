@@ -68,7 +68,7 @@ namespace AutomatedUIFramework.Pages.General.UAT1
             UserPasswordField.SendKeys("00000012Sss");
             var homePage = new HomePage(WebDriver);
             LoginBtn.Click();
-            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(2));
+            WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//button[@class='button button--large button--green auth-modal__submit']")));
             return homePage;
         }

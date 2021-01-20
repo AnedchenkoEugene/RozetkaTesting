@@ -19,7 +19,7 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         private By PRODUCT_COLOR = By.XPath("//span[@style='background-color: rgb(102, 102, 102);']");
         private By PRODUCT_SPECIFICATIONS = By.XPath("//a[@class='tabs__link']");
         private By BUY_BUTTON = By.XPath("//span[@class='buy-button__label']");
-        private By BASKET_BUTTON = By.XPath("//a[@_ngcontent-c11]");
+        private By OPEN_BASKET_BUTTON = By.XPath("//a[@_ngcontent-c11]");
         #endregion
         #region WebElemets
         public IWebElement ProductColor
@@ -34,9 +34,9 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
         {
             get { return WebDriver.FindElement(BUY_BUTTON); }
         }
-        private IWebElement BasketButton
+        private IWebElement OpenBasketButton
         {
-            get { return WebDriver.FindElement(BASKET_BUTTON); }
+            get { return WebDriver.FindElement(OPEN_BASKET_BUTTON); }
         }
 
         #endregion
@@ -73,11 +73,11 @@ namespace AutomatedUIFrameworkTemplate.Pages.General.UAT1
             var basketPage = new BasketPage(WebDriver);
             return basketPage;
         }
-        public BasketPage SelectBasket()
+        public BasketPage OpenBasket()
         {
             WebDriverWait wait = new WebDriverWait(WebDriver, System.TimeSpan.FromSeconds(15));
-            wait.Until(ExpectedConditions.ElementToBeClickable(BasketButton));
-            BasketButton.Click();
+            wait.Until(ExpectedConditions.ElementToBeClickable(OpenBasketButton));
+            OpenBasketButton.Click();
             var basketPage = new BasketPage(WebDriver);
             return basketPage;
         }
